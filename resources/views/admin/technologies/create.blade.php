@@ -1,8 +1,8 @@
 @extends('layouts.app');
 @section('content')
     <section class="container">
-        <h2>New Type</h2>
-        <form action="{{ route('admin.types.store') }}" method="POST">
+        <h2>Technologies Creation</h2>
+        <form action="{{ route('admin.technologies.store') }}" method="POST">
             @csrf
             <div class="mb-3">
                 {{-- TITLE --}}
