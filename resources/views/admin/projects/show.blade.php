@@ -9,9 +9,13 @@
             </div>
         </div>
         <h3>{{ $project->title }}</h3>
-        <div>
-            <span class="">{{ $project->type ? $project->type->name : '' }}</span>
-        </div>
+        @if ($project->type_id)
+            <div>
+                <a href="{{ route('admin.types.show', $project->type->slug) }}">{{ $project->type ? $project->type->name : '' }}
+                </a>
+            </div>
+        @endif
+
         <div><img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}"></div>
         <p>{{ $project->body }}</p>
         <div>
