@@ -20,7 +20,6 @@ class TechnologySeeder extends Seeder
 
             $newTechnology->name = $technology;
             $newTechnology->slug = Str::slug($technology, '-');
-            $newTechnology->image = $technology;
 
             $newTechnology->save();
         }

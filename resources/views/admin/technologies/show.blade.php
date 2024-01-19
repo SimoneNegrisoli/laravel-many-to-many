@@ -9,13 +9,15 @@
             </div>
         </div>
         <div>
-            <ul>
-                @foreach ($technology->projects as $project)
-                    <li>
-                        <a href="{{ route('admin.projects.show', $project->slug) }}">{{ $project->title }}</a>
-                    </li>
-                @endforeach
-            </ul>
+            @if ($technology->projects)
+                <ul>
+                    @foreach ($technology->projects as $project)
+                        <li>
+                            <a href="{{ route('admin.projects.show', $project->slug) }}">{{ $project->title }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
 
         </div>
 

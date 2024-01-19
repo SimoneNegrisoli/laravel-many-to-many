@@ -56,6 +56,9 @@
                         <li>
                             <a class="nav-link" href="{{ route('admin.types.index') }}">Type</a>
                         </li>
+                        <li>
+                            <a class="nav-link" href="{{ route('admin.technologies.index') }}">Technologies</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

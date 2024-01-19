@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateTypeRequest;
 use App\Models\Type;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class TypeController extends Controller
 {
@@ -32,7 +33,13 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request)
     {
-        //
+        $formData = $request->validated();
+
+        $slug = Str::of($formData['name'])->slug('-');
+
+        $formData['slug'] = $slug;
+        $type = Type::create($formData);
+        return redirect()->route('admin.types.show', $type->slug);
     }
 
     /**
@@ -56,7 +63,16 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $formData = $request->validated();
+        $formData['slug'] = $type->slug;
+
+        if ($type->name !== $formData['name']) {
+
+            $slug = Str::of($formData['name'])->slug('-');
+            $formData['slug'] = $slug;
+        }
+        $type->update($formData);
+        return redirect()->route('admin.types.show', $type->slug);
     }
 
     /**
@@ -64,6 +80,7 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return to_route('admin.types.index')->with('message', "$type->name eliminato con successo");
     }
 }
