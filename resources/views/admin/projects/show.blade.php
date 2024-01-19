@@ -17,7 +17,19 @@
         @endif
 
         <div><img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}"></div>
-        <p>{{ $project->body }}</p>
+        <div>
+            <p>{{ $project->body }}</p>
+        </div>
+
+        @if ($project->technologies)
+            <div>
+                <h6>technologies</h6>
+                @foreach ($project->technologies as $technology)
+                    <a class="badge rounded-pill text-bg-primary"
+                        href="{{ route('admin.technologies.show', $technology->slug) }}">{{ $technology->name }}</a>
+                @endforeach
+            </div>
+        @endif
         <div>
             <a href="{{ route('admin.projects.index') }}" class="btn btn-dark ">Torna ai progetti</a>
         </div>
