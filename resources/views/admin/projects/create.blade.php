@@ -69,7 +69,7 @@
                 <div class="w-100">
                     <label for="image">Immagine</label>
                     <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"
-                        id="image" required maxlength="200" minlength="3" value="{{ old('image') }}">
+                        id="image" value="{{ old('image') }}">
                     @error('image')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

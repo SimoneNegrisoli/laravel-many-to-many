@@ -74,22 +74,49 @@
             </div>
 
             {{-- IMG --}}
-            <div class="mb-3">
-                <label for="image">Image</label>
-                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"
-                    id="image" value="{{ old('image', $project->image) }}">
-                @error('image')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+            <div class="d-flex">
+                <div class="media me-4">
+                    <img class="shadow" width="150" src="{{ asset('storage/' . $project->image) }}"
+                        alt="{{ $project->title }}">
+                </div>
+                <div class="mb-3 w-100">
+                    <label for="image">Image</label>
+                    <input type="file" class="form-control   @error('image') is-invalid @enderror" name="image"
+                        id="image" value="{{ old('image', $project->image) }}">
+                    @error('image')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
 
+
             {{-- BTN --}}
-            <button type="submit" class="btn btn-success">Save</button>
-            <button type="reset" class="btn btn-primary">Reset</button>
+            <div class="d-flex justify-content-between align-item-center">
+                <div>
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="reset" class="btn btn-primary">Reset</button>
+                </div>
+
+                <div>
+                    <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger cancel-button"
+                            data-item-title="{{ $project->title }}"><i class="fa-solid fa-trash-can"></i></button>
+                    </form>
+                </div>
+
+            </div>
+
 
         </form>
+
+
+
+
         <div class="mt-2">
             <a href="{{ route('admin.projects.index') }}" class="btn btn-dark ">Torna ai progetti</a>
         </div>
     </section>
+    @include('partials.modal_delete');
 @endsection

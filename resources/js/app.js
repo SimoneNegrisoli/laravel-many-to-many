@@ -29,7 +29,7 @@ buttons.forEach((button) => {
         title.textContent = dataTitle;
 
         //prendo dalla modale il bottone di conferma
-        const buttonDelete = modal.querySelector("button.btn-primary");
+        const buttonDelete = modal.querySelector("button.btn-danger");
         console.log(buttonDelete)
         buttonDelete.addEventListener("click", (event) => {
             button.parentElement.submit();
@@ -39,13 +39,17 @@ buttons.forEach((button) => {
 
 
 const previewImage = document.getElementById("image");
-previewImage.addEventListener("change", (event) => {
-    var oFReader = new FileReader();
+if (previewImage) {
+    previewImage.addEventListener("change", (event) => {
 
-    oFReader.readAsDataURL(previewImage.files[0]);
+        var oFReader = new FileReader();
 
-    oFReader.onload = function (oFREvent) {
-        //console.log(oFREvent);
-        document.getElementById("uploadPreview").src = oFREvent.target.result;
-    };
-});
+        oFReader.readAsDataURL(previewImage.files[0]);
+
+        oFReader.onload = function (oFREvent) {
+
+            document.getElementById("uploadPreview").src = oFREvent.target.result;
+        };
+    });
+}
+

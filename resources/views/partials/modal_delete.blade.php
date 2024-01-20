@@ -10,7 +10,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-                <button type="submit" class="btn btn-primary">Conferma</button>
+                <button type="submit" class="btn btn-danger">Conferma</button>
             </div>
         </div>
     </div>
